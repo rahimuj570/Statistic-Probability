@@ -32,8 +32,17 @@ while repeat:
         return res
 
 
+    m = 0.00
+    c = 0.00
+
+
     def calc(givenFlag, x, y):
-        m = (mean(x) * mean(y) - xyMean(x, y)) / ((mean(x) ** 2) - xSqrMean(x))
+        global m
+        try:
+            m = (mean(x) * mean(y) - xyMean(x, y)) / ((mean(x) ** 2) - xSqrMean(x))
+        except Exception as e:
+            print(e)
+            print("Maybe your data set is not properly correct!")
         c = mean(y) - m * mean(x)
         # print(m,'fffffff',c)
         if (givenFlag == 'Y'):
@@ -43,7 +52,10 @@ while repeat:
             given = float(input("Insert value of \"Y\" : "))
             res = (given - c) / m
 
-        print("ANSWER: ", "%.2f" % res)
+        print("\n_____________")
+        print("Value of 'M': ", "%.2f" % m)
+        print("Value of 'C': ", "%.2f" % c)
+        print("ANSWER : ", "%.2f" % res)
 
 
     for i in range(0, int(size)):
@@ -54,18 +66,22 @@ while repeat:
         print(f'Insert {i + 1} number of value of "Y" : ')
         y.append(int(input()))
 
-    question = input("Which value you want to find X or Y?\n \t X : 1 || Y : 2 \n\t")
-    match question:
-        case '1':
-            calc('X', x, y)
-        case '2':
-            calc('Y', x, y)
-        case _:
-            print('Wrong Input')
+    f1 = True
+    while f1:
+        question = input("Which value you want to find X or Y?\n \t X : 1 || Y : 2 \n\t")
+        match question:
+            case '1':
+                calc('X', x, y)
+                f1 = False
+            case '2':
+                calc('Y', x, y)
+                f1 = False
+            case _:
+                print('Wrong Input')
 
     error = True
     while error:
-        print("Are you want to calculate another Linear Regression?")
+        print("\nAre you want to calculate another Linear Regression?")
         stop = input("YES : 1 \t NO : 2\n")
         match stop:
             case '1':

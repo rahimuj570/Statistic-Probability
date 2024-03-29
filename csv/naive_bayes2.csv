@@ -1,0 +1,6 @@
+Confident,Studied,Sick,Result
+yes,no,no,fail
+yes,no,yes,pass
+no,yes,yes,fail
+no,yes,no,pass
+yes,yes,yes,pass

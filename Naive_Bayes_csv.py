@@ -14,7 +14,7 @@ with open('./csv/naive_bayes.csv') as file:
     tempRes = 'Buys_Computer'
 
 
-    def insertData(colName, collec):
+    def insertData(colName, collec, row):
         if row[colName] in collec.keys():
             if row.get(tempRes) == 'yes':
                 collec[row[colName]][1] += 1
@@ -36,17 +36,20 @@ with open('./csv/naive_bayes.csv') as file:
         else:
             totalNo += 1
 
+        #DEBUG
+        #print(row)  #=>{'Age': '<=30', 'Income': 'high', 'Student': 'no', 'Credit_Rating': 'fair', 'Buys_Computer': 'no'}
+
         # ========>AGE
-        insertData('Age', ageData)
+        insertData('Age', ageData,row)
 
         # ==============>INCOME
-        insertData('Income', incomeData)
+        insertData('Income', incomeData,row)
 
         # ==============>CREDIT-RATING
-        insertData('Credit_Rating', creditData)
+        insertData('Credit_Rating', creditData,row)
 
         # ==============>STUDENT
-        insertData('Student', studentData)
+        insertData('Student', studentData,row)
     # =======>DEBUG
     # print(ageData)
     # print(incomeData)
